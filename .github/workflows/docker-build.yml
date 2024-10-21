@@ -1,0 +1,31 @@
+name: Build and Push Docker Image
+
+# Определяем, когда запускать это действие
+on:
+  push:
+    branches:
+      - main  # Запускать действие при пуше в ветку main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Используем виртуальную машину Ubuntu
+
+    steps:
+      # Первый шаг: клонируем код из репозитория
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Логинимся в DockerHub с помощью секретов
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}  # Имя пользователя DockerHub
+          password: ${{ secrets.DOCKER_PASSWORD }}  # Пароль от DockerHub
+
+      # Строим и пушим Docker-образ
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true  # Загружать ли образ в DockerHub
+          tags: bessosonia/otrpo_lr2:latest  # Тег для Docker-образа (замените на свои данные)
