@@ -1,5 +1,5 @@
 import cv2
-from cv2 import data
+from cv2 import data 
 
 # Загрузка классификатора для детектирования лиц (Haar Cascade)
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
