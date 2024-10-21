@@ -11,12 +11,12 @@ RUN pip install opencv-python-headless
 RUN wget https://github.com/opencv/opencv/raw/master/data/haarcascades/haarcascade_frontalface_default.xml -P /app
 
 # Копируем приложение и изображение в контейнер
-COPY face_detection.py /app/face_detection.py
+COPY lr2.py /app/lr2.py
 COPY image.jpg /app/image.jpg
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
 # Запуск приложения
-CMD ["python", "face_detection.py"]
+CMD ["python", "lr2.py"]
 
